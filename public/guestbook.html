@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>guest feedback</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/pure-min.css"
+        integrity="sha384-oAOxQR6DkCoMliIh8yFnu25d7Eq/PHS21PClpwjOTeU2jRSq11vu66rf90/cZr47" crossorigin="anonymous">
+
+    <style>
+        body {
+            background-color: #575454;
+            color: aliceblue;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        function myFunction() {
+
+            var thisRequest = newXMLHttpRequest();
+            thisRequest.open('GET', 'guestbook.json');
+            thisRequest.send();
+
+            thisRequest.onreadystatechange = function () {
+                if (thisRequest.readyState === 4) {
+                    document.getElementById("data").innerHTML = thisRequest.responseText;
+                    var text = thisRequest.responseText;
+                    var data = JSON.parse(text);
+
+                    var i = 0;
+                    do {
+                        document.getElementById("username").innerHTML = data[i++].username;
+                        document.getElementById("country").innerHTML = data[i++].country;
+                        document.getElementById("message").innerHTML = data[i++].message;
+                        document.getElementById("date").innerHTML = data[i++].date;
+
+                    } while (i < 1);
+
+                }
+            }
+        }
+    </script>
+
+    <div class="pure-g">
+        <div class="pure-u-1-5"></div>
+        <div class="pure-u-3-5">
+            <h1>Guest Comments Should Be Here</h1>
+            <h3>Developer Riikka Has Still Some Problems to Solve Before ...<br>Patience!</h3>
+            <button onclick="myFunction()">Show comments</button><br>
+            <br><br><br>
+            <table class="pure-table pure-table-horizontal">
+                <thead>
+                    <tr>
+                        <th>Guest:</th>
+                        <th>From:</th>
+                        <th>Commented:</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <p id="data"></p>
+                    <tr>
+                        <td id="username"></td>
+                        <td id="country"></td>
+                        <td id="message"></td>
+                        <td id="date"></td>
+                    </tr>
+                    <tr>
+                        <td id="username2"></td>
+                        <td id="country2"></td>
+                        <td id="message2"></td>
+                        <td id="date2"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="pure-u-1-5"></div>
+    </div>
+</body>
+
+</html>

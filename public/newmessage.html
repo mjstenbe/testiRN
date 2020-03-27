@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>new message</title>
+  <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/pure-min.css"
+    integrity="sha384-oAOxQR6DkCoMliIh8yFnu25d7Eq/PHS21PClpwjOTeU2jRSq11vu66rf90/cZr47" crossorigin="anonymous">
+
+  <style>
+    body {
+      background-color: #575454;
+    }
+  </style>
+
+</head>
+
+<body>
+  <div class="pure-g">
+    <div class="pure-u-1-5"></div>
+    <div class="pure-u-3-5">
+      <h1>SEND YOUR FEEDBACK</h1>
+      <br><br><br>
+      <form class="pure-form" method="post" action="/newmessage">
+        <fieldset class="pure-group">
+          <input type="text" name="username" class="pure-input-1-2" placeholder="Username">
+          <input type="text" name="country" class="pure-input-1-2" placeholder="Country">
+        </fieldset>
+
+        <fieldset class="pure-group">
+
+          <textarea name="message" class="pure-input-1-2" placeholder="Write your message to us"></textarea>
+        </fieldset>
+
+        <button type="submit" class="pure-button pure-input-1-2 pure-button-primary">Send</button>
+      </form>
+    </div>
+    <div class="pure-u-1-5"></div>
+
+  </div>
+
+</body>
+
+</html>

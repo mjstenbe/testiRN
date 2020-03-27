@@ -1,0 +1,76 @@
+<html>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+<style>
+    div {
+        margin: 10px;
+    }
+
+    form {
+        border: 1px solid lightgrey;
+        padding: 10px;
+    }
+</style>
+
+<body>
+    <div>
+        <form method="POST" action="/newmessage">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" class="form-control" id="username" placeholder="Enter username" name="username" />
+            </div>
+            <div class="form-group">
+                <label for="country">Country</label>
+                <input type="text" class="form-control" id="country" placeholder="Country" name="country" />
+            </div>
+            <div class="form-group">
+                <label for="message">Message</label>
+                <input type="text" class="form-control" id="message" placeholder="Your comments" name="message" />
+            </div>
+
+            <button type="button" id="button" class="btn btn-primary">
+                Submit
+            </button>
+        </form>
+    </div>
+    <div id="message1"></div>
+
+    <script>
+
+        window.onload = event => {
+
+            var nappi = document.getElementById("button");
+
+            nappi.addEventListener("click", () => {
+                var username = document.getElementById("username").value;
+                var country = document.getElementById("country").value;
+                var message = document.getElementById("message").value;
+
+                var data = {
+                    username: username,
+                    country: country,
+                    message: message,
+                    date: new Date()
+                };
+
+
+
+                var xmlhttp = new XMLHttpRequest();
+
+                xmlhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        document.getElementById("message1").innerHTML = this.responseText;
+                        console.log(this.responseText);
+                    }
+                };
+                xmlhttp.open("POST", "/ajaxmessage", true);
+                // Data sended to router.js and returned to form message input div
+                xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xmlhttp.send("username=" + username + "&country=" + country + "&message=" + message);
+
+            });
+        }
+    </script>
+</body>
+
+</html>
